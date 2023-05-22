@@ -31,7 +31,7 @@ class PurchaseItem(models.Model):
     totalprice = models.IntegerField(default=1)
 
 def __str__(self):
-	    return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
+	    return "Bill no: " + str(self.bill.billno) + ", Item = " + self.stock.name
 
 class PurchaseBillDetails(models.Model):
     billno = models.ForeignKey(PurchaseBill, on_delete = models.CASCADE, related_name='purchasedetailsbillno')

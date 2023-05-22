@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'inventory',
     'transections',
+    'ecommerce',
     'django_extensions',
     'rest_framework_simplejwt',
 ]

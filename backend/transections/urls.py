@@ -1,6 +1,6 @@
 
 from django.urls import path, include
-from transections.views import SuppliersView, SuppliersCreateView, SupplierUpdateView, SupplierDelateView, SupplierProfileView, PurchaseBillView, UserLogin, PurchaseCreateView,PurchaseCreateVieww
+from transections.views import SuppliersView, SuppliersCreateView, SupplierUpdateView, SupplierDelateView, SupplierProfileView, PurchaseCreateView
 my_viewset = SuppliersView.as_view({
     'get': 'list',
     'post': 'create',
@@ -19,37 +19,23 @@ my_viewset3 = SupplierDelateView.as_view({
 SupplierProfileView = SupplierProfileView.as_view({
     'get': 'retrive',
 })
-PurchaseBill = PurchaseBillView.as_view({
-    'get': 'retrive',
-})
 
-UserLogin = UserLogin.as_view({
-
-    'post': 'login'
-
-})
 PurchaseCreateView = PurchaseCreateView.as_view({
 
     'get': 'list',
     'post':'create'
 
 })
-PurchaseCreateView1 = PurchaseCreateVieww.as_view({
 
-    'get': 'list',
-    'post':'create'
 
-})
 urlpatterns = [
-    path('login/', UserLogin),
+ 
     path('<int:pk>/', my_viewset, name='inventory'),
     path('create/', my_viewset1, name='inventory'),
     path('update/<int:pk>/', my_viewset2, name='update'),
     path('delate/<int:pk>/', my_viewset3, name='delate'),
     path('SupplierProfileView/<int:pk>/', SupplierProfileView),
-    path('PurchasebillView/<int:pk>/', PurchaseBill),
-
     path('purchases/new/', PurchaseCreateView,name='new-purchase'),
-    path('purchases/ne/', PurchaseCreateView1,name='new-purchase'),
+   
 
 ]
