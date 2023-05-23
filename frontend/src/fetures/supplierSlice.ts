@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-interface Suppliers {
-  id:string;
+import { RootState } from '../store/store';
+interface Supplier {
+  id: string;
   name: string;
   phone: string;
   address: string;
@@ -10,30 +10,28 @@ interface Suppliers {
 }
 
 interface SupplierState {
-  data: Suppliers[];
+  suppliers: Supplier[];
   loading: boolean;
   error: string | null;
 }
 
 const initialState: SupplierState = {
-  data: [],
+  suppliers: [],
   loading: false,
   error: null,
 };
 
 export const fetchSuppliers = createAsyncThunk('suppliers/fetchSuppliers', async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/suppliers/1/'); 
+    const response = await axios.get<Supplier[]>('http://127.0.0.1:8000/suppliers/1/');
     return response.data;
-    
   } catch (error) {
     throw new Error('Failed to fetch suppliers.');
   }
-  
 });
 
 const supplierSlice = createSlice({
-  name: 'suppliers',
+  name: 'supplier',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -44,7 +42,7 @@ const supplierSlice = createSlice({
       })
       .addCase(fetchSuppliers.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.suppliers = action.payload;
       })
       .addCase(fetchSuppliers.rejected, (state, action) => {
         state.loading = false;
@@ -52,5 +50,9 @@ const supplierSlice = createSlice({
       });
   },
 });
+
+export const selectSuppliers = (state: RootState) => state.supplier.suppliers;
+export const selectLoading = (state: RootState) => state.supplier.loading;
+export const selectError = (state: RootState) => state.supplier.error;
 
 export default supplierSlice.reducer;
