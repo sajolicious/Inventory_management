@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSuppliers, selectSuppliers, selectLoading, selectError } from '../fetures/supplierSlice';
+import { fetchSuppliers, selectSuppliers, selectLoading, selectError } from '../features/supplierSlice';
 
 const SupplierList: React.FC = () => {
   const dispatch = useDispatch();

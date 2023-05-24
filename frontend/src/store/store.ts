@@ -1,10 +1,13 @@
-import supplierReducer from '../fetures/supplierSlice';
+import supplierReducer from '../features/supplierSlice';
 import { configureStore, ThunkAction, Action,getDefaultMiddleware } from '@reduxjs/toolkit';
-import supplierLoginReducer from '../fetures/supplierLoginSlice';
+import supplierLoginReducer from '../features/supplierRegSlice';
+import supplierLogReducer from '../features/supplierRegSlice';
 const store = configureStore({
   reducer: {
     supplier: supplierReducer,
-    supplierLogin:supplierLoginReducer
+    supplierLogin:supplierLoginReducer,
+    supplierLog:supplierLogReducer
+    
   },
   middleware: getDefaultMiddleware({
     // Add any additional middleware here

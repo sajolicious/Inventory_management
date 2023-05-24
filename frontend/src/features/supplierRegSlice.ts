@@ -21,7 +21,7 @@ const initialState: SupplierState = {
     error: null,
 };
 
-const supplierLoginSlice = createSlice({
+const suppliesRegistrationSlice = createSlice({
     name: 'supplier',
     initialState,
     reducers: {
@@ -47,9 +47,9 @@ export const {
     loginSupplierSuccess,
     loginSupplierFailure,
     logoutSupplier,
-} = supplierLoginSlice.actions;
+} = suppliesRegistrationSlice.actions;
 
-export default supplierLoginSlice.reducer;
+export default suppliesRegistrationSlice.reducer;
 
 export const loginSupplier = (supplier: Supplier): AppThunk => async (
     dispatch

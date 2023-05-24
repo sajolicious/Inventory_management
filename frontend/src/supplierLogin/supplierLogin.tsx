@@ -1,65 +1,56 @@
-
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginSupplier } from '../fetures/supplierLoginSlice';
+import { loginSuppliers } from '../features/supplierLoginSlice';
 import { AppDispatch } from '../store/store';
+import { Typography, TextField, Button, Grid } from '@mui/material';
+import { useNavigate} from 'react-router-dom';
 
-const SupplierLogin: React.FC = () => {
-  const dispatch:AppDispatch = useDispatch();
+const SupplierLogIn: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const navigate= useNavigate();
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
+
   const handleLogin = () => {
-    dispatch(loginSupplier({ name, phone,address,email }));
+    dispatch(loginSuppliers({ name, email }));
+    console.log('hello');
+    navigate('/navbar'); // Redirect to the dashboard page after successful login
   };
 
   return (
     <div>
-      <h2>Supplier Login</h2>
-      <form>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
+      <Typography variant="h2" gutterBottom>
+        Supplier Login
+      </Typography>
+      <Grid container spacing={2}>
+        <Grid item xs={12} lg={4}>
+          <TextField
             id="name"
+            label="Name"
+            variant="outlined"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            fullWidth
           />
-        </div>
-        <div>
-          <label htmlFor="phone">Phone:</label>
-          <input
-            type="text"
-            id="phone"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="address">Phone:</label>
-          <input
-            type="text"
-            id="address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Phone:</label>
-          <input
-            type="text"
+        </Grid>
+        <Grid item xs={12} lg={4}>
+          <TextField
             id="email"
+            label="email"
+            variant="outlined"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            fullWidth
           />
-        </div>
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
-      </form>
+        </Grid>
+        <Grid item xs={12} lg={4}>
+          <Button variant="contained" color="primary" onClick={handleLogin}>
+            Login
+          </Button>
+        </Grid>
+      </Grid>
     </div>
   );
 };
 
-export default SupplierLogin;
+export default SupplierLogIn;
