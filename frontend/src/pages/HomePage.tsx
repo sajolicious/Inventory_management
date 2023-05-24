@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
       >
         <Toolbar />
         <List>
-          <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to="/MyComponent" style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItem button>
               <ListItemIcon>
                 <DashboardIcon />
