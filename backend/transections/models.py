@@ -12,6 +12,7 @@ class Suppliers(models.Model):
     email = models.EmailField(max_length=254, unique=True)
     notes = models.TextField(blank=True)
     is_deleted = models.BooleanField(default=False)
+    
 def __str__(self):
     return self.name
 
